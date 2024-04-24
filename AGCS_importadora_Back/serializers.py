@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from AGCS_importadora_Back.models import UserData
+from AGCS_importadora_Back.models import UserData, ProductoData, ClienteData, VentasData, ImportacionData
 from django.contrib.auth.models import User
 
 class UserLoginSerializer(serializers.ModelSerializer):
@@ -10,6 +10,26 @@ class UserLoginSerializer(serializers.ModelSerializer):
 class UserDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserData
-        fields = ['id','nombre_completo','fecha_nacimiento','tipo_documento','nit','direccion','correo','telefono','rol']
+        fields = '__all__'
+
+class ClienteDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClienteData
+        fields = '__all__'
+
+class ProductoDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductoData
+        fields = '__all__'
+
+class VentasDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VentasData
+        fields = '__all__'
+
+class ImporDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ImportacionData
+        fields = '__all__'
 
     

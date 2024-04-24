@@ -8,8 +8,8 @@ from django.contrib.auth.models import User
 from rest_framework import permissions
 from rest_framework import viewsets
 
-from AGCS_importadora_Back.models import UserData
-from AGCS_importadora_Back.serializers import UserDataSerializer,UserLoginSerializer
+from AGCS_importadora_Back.models import UserData, ClienteData, ProductoData, VentasData, ImportacionData
+from AGCS_importadora_Back.serializers import UserDataSerializer,UserLoginSerializer,ClienteDataSerializer, ProductoDataSerializer, VentasDataSerializer,ImporDataSerializer
 
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
@@ -35,4 +35,25 @@ class UserLoginView(APIView):
 class UserDataViewSet(viewsets.ModelViewSet):
     queryset = UserData.objects.all()
     serializer_class = UserDataSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class ClienteDataViewSet(viewsets.ModelViewSet):
+    queryset = ClienteData.objects.all()
+    serializer_class = ClienteDataSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class ProductoDataViewSet(viewsets.ModelViewSet):
+    queryset = ProductoData.objects.all()
+    serializer_class = ProductoDataSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class VentaDataViewSet(viewsets.ModelViewSet):
+    queryset = VentasData.objects.all()
+    serializer_class = VentasDataSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class ImporDataViewSet(viewsets.ModelViewSet):
+    queryset = ImportacionData.objects.all()
+    serializer_class = ImporDataSerializer
     permission_classes = [permissions.IsAuthenticated]
