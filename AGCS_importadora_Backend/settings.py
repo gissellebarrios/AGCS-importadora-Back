@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+# Add these at the top of your settings.py
+from os import getenv
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,15 +81,20 @@ WSGI_APPLICATION = 'AGCS_importadora_Backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# Replace the DATABASES section of your settings.py with this
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'agcs_importadora',
-        'USER':'usuario_importadora',
-        'PASSWORD':'123456789',
-        'HOST':'localhost',
-        'PORT':'5432'
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'agcs_importadora',
+    'USER': 'agcs_importadora_owner',
+    'PASSWORD': 'lJi8rXNGa0Qb',
+    'HOST': 'ep-muddy-leaf-a6zqy4xv.us-west-2.aws.neon.tech',
+    'PORT': 5432,
+    'OPTIONS': {
+      'sslmode': 'require',
+    },
+    'DISABLE_SERVER_SIDE_CURSORS': True,
+  }
 }
 
 
